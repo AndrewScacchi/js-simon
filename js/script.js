@@ -1,26 +1,17 @@
 // SCRIPT for JS-Simon
 console.log("HelloWorld!");
-
-/*
-Descrizione:
-Visualizzare in pagina 5 numeri casuali.
-Da lì parte un timer di 30 secondi.
-Dopo 30 secondi l’utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
-Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
-*/
-
+// variables
 const btn = document.querySelector(".btn");
 const container = document.querySelector(".random-num");
 const timer = document.querySelector("div.timer");
 const myArray = [];
 const maxTime = 5;
 
-
+// on btn click do..
 btn.addEventListener("click", function () {
-    // define array and cleanslate
+    // cleanslate
     container.innerHTML = "";
-
-    //created 5 random unique numbers
+    // created 5 random unique numbers
     while (myArray.length < 5) {
         //createNewDiv
         let num = Math.floor(Math.random() * 100) + 1;
@@ -28,8 +19,7 @@ btn.addEventListener("click", function () {
             myArray.push(num);
         }
     }
-
-
+    // print the created numbers into the DOM
     for (i = 0; i < myArray.length; i++) {
         const newNum = document.createElement("div");
 
@@ -38,38 +28,44 @@ btn.addEventListener("click", function () {
         container.append(newNum);
     }
 
-
-
-
-
-    // CountDOWN 30s
+    // CountDOWN 5s
     let timedown = maxTime;
     let countdown = setInterval(function(){
+        timer.innerHTML = timedown;
         if (timedown == 0){
             clearInterval(countdown);
-            alert("timesUP!");
-            container.innerHTML = "";
+            container.innerHTML= "";
         }
-
-        timer.innerHTML = timedown;
         timedown--;
     }, 1000);
    
-
-    // NON mi fa più nessuna operazione dopo questo punto. e non capisco perchè
+    // What happens after Times up!
+    // nested setTimeOut for memory test
+    setTimeout(function(){
+        alert("timesUP! Now wait 10s!");
+        // nested
+        setTimeout(function(){
+            let score = 0;
+            const answers = [];
     
+            for(i=0; i<5; i++){
+                let question = parseInt(prompt("Qual'era il " + (i +1) + "^ numero?"));
+                if(myArray.includes(question)){
+                    score ++;
+                    answers.push(`Hai indovinato il ${question}`) ;
+                } else {
+                    answers.push(`non hai indovinato! era il numero ${myArray[i]}` )}
+            }
 
-    console.log(myArray);
-
+            // l'alert non è esattamente dinamico
+            alert( `Hai indovinato ${score} numeri! 
+                    ${answers[0]} 
+                    ${answers[1]} 
+                    ${answers[2]} 
+                    ${answers[3]} 
+                    ${answers[4]}`
+            );    
+        }, 10000)
+    },
+    6000)
 })
-
-
-// FUNCTIONS
-// countdown
-
-
-    
-
-
-
-
