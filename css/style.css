@@ -4,5 +4,65 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+}
+.container {
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
+div.timer {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+
+    line-height: 150px;
+    font-size: 100px;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 5px solid black;
+}
+.btn {
+    width: 150px;
+    height: 75px;
+    line-height: 75px;
+    border-radius: 25px;
+    font-size: 2em;
+    background-color: blue;
+    color: white;
+
+    margin: 25px;
+}
+.btn:hover {
+    cursor: pointer;
+    transform: scale(105%);
+    font-weight: bold;
+}
+.random-num{
+    height: 150px;
+    width: 800px;
+    border: 2px solid black;
+    background-color: beige;
+    margin: 25px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.number {
+    font-size: 5em;
+    background-color: white;
+    padding: 0.25em;
+    border: 1px solid black;
+}
+.number-hide {
+    display: none;
+}
+
+/* Utilities Classes */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
